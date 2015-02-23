@@ -1,9 +1,32 @@
 <?php
 namespace Stien\MediaLibrary;
 
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
 class MediaLibraryServiceProvider extends ServiceProvider {
+
+	/**
+	 * Boot the service provider.
+	 *
+	 * @return void
+	 */
+	public function boot()
+	{
+		$this->setupConfig();
+	}
+
+	/**
+	 * Setup the config.
+	 *
+	 * @return void
+	 */
+	protected function setupConfig()
+	{
+		$source = realpath(__DIR__ . '/../config/medialibrary.php');
+		$this->publishes([$source => config_path('medialibrary.php')]);
+		$this->mergeConfigFrom($source, 'medialibrary');
+	}
 
 	/**
 	 * Register the service provider.
@@ -12,10 +35,31 @@ class MediaLibraryServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app->singleton('Stien\MediaLibrary\Library', function($app){
-			return new Library();
+		$this->registerLibrary($this->app);
+	}
+
+	/**
+	 * Registers the library class.
+	 *
+	 * @param Application $app
+	 *
+	 * @return void
+	 */
+	public function registerLibrary(Application $app)
+	{
+		$app->singleton('bstien.library', function ($app)
+		{
+			return new Library($app['config']);
 		});
 	}
 
-	public function provides(){}
+	/**
+	 * Get the services provided by the provider.
+	 *
+	 * @return array
+	 */
+	public function provides()
+	{
+		return ['bstien.library'];
+	}
 }
