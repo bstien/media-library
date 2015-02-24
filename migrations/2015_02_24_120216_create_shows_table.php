@@ -24,7 +24,7 @@ class CreateShowsTable extends Migration {
 			$t->string('status');
 
 			$t->string('banner');
-			$t->string('fanart');
+			$t->string('fan_art');
 			$t->string('poster');
 
 			$t->timestamps();
