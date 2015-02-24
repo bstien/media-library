@@ -7,6 +7,9 @@ use Moinax\TvDb\Http\Cache\FilesystemCache;
 
 class TvDbManager {
 
+	/**
+	 * @var Client
+	 */
 	private $client;
 
 	/**
@@ -29,5 +32,13 @@ class TvDbManager {
 			$httpClient = new CacheClient($cache, $cacheTtl);
 			$this->client->setHttpClient($httpClient);
 		}
+	}
+
+	/**
+	 * @return Client
+	 */
+	public function getClient()
+	{
+		return $this->client;
 	}
 }
