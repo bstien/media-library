@@ -51,6 +51,6 @@ class Serie extends Eloquent {
 	 */
 	public function episodes()
 	{
-		return $this->hasMany('Stien\Library\Series\Episode');
+		return $this->hasMany('Stien\MediaLibrary\Content\Episode');
 	}
 }
