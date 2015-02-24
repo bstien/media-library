@@ -24,7 +24,7 @@ class CreateEpisodesTable extends Migration {
 
 			$t->string('name');
 			$t->text('overview');
-			$t->date('aired')->nullable();
+			$t->date('first_aired')->nullable();
 
 			$t->boolean('is_downloaded');
 			$t->string('thumbnail');
