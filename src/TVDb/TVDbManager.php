@@ -22,10 +22,11 @@ class TvDbManager {
 	{
 		$this->client = new Client($baseUrl, $apiKey);
 
-		if($cachePath != null && is_string($cachePath)){
+		if ( $cachePath != null && is_string($cachePath) )
+		{
 
 			// Set default cache TTL to one week.
-			($cacheTtl != null && is_int($cacheTtl))? $cacheTtl : 86400 * 7;
+			($cacheTtl != null && is_int($cacheTtl)) ? $cacheTtl : 86400 * 7;
 
 			// Create cache client and assign it to TvDb-client
 			$cache = new FilesystemCache($cachePath);
@@ -40,5 +41,19 @@ class TvDbManager {
 	public function getClient()
 	{
 		return $this->client;
+	}
+
+	public function createOrUpdateFromTvDbID($id)
+	{
+		$res = $this->getClient()->getSerieEpisodes($id);
+		if ( $res )
+		{
+			Serie::createFromTVDbSerie($res['serie']);
+
+			foreach ($res['episodes'] as $e)
+			{
+				Episode::createFromTvDbEpisode($e);
+			}
+		}
 	}
 }
