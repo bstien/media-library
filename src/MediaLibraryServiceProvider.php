@@ -14,6 +14,7 @@ class MediaLibraryServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->setupConfig();
+		$this->setupMigrations();
 	}
 
 	/**
@@ -26,6 +27,17 @@ class MediaLibraryServiceProvider extends ServiceProvider {
 		$source = realpath(__DIR__ . '/../config/medialibrary.php');
 		$this->publishes([$source => config_path('medialibrary.php')]);
 		$this->mergeConfigFrom($source, 'medialibrary');
+	}
+
+	/**
+	 * Setup the migrations needed.
+	 *
+	 * @return void
+	 */
+	protected function setupMigrations()
+	{
+		$source = realpath(__DIR__ . '/../migrations/');
+		$this->publishes([$source => base_path('/database/migrations')]);
 	}
 
 	/**
