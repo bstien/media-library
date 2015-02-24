@@ -13,7 +13,7 @@ class Serie extends Eloquent {
 	protected $fillable = ['imdb_id', 'name', 'overview', 'status', 'banner', 'fan_art', 'poster'];
 
 	/**
-	 * Create new Eloquent-object from TvDbSerie.
+	 * Create or update a serie in database from TvDbSerie.
 	 *
 	 * @param TvDbSerie $s
 	 * @return Serie
@@ -47,10 +47,30 @@ class Serie extends Eloquent {
 	}
 
 	/**
+	 * Define the relationship to Episode
+	 *
 	 * @return HasMany
 	 */
 	public function episodes()
 	{
 		return $this->hasMany('Stien\MediaLibrary\Content\Episode');
 	}
+
+	/**
+	 * Make the title search-friendly and easy to
+	 * append to episode-titles for files.
+	 *
+	 * @return string
+	 */
+	public function formatName()
+	{
+		// Replace all spaces with '.'.
+		$name = preg_replace('/ /', '.', $this->name);
+
+		// Remove certain characters.
+		$name = preg_replace('/[\(\)]/', '', $name);
+
+		return $name;
+	}
+
 }
