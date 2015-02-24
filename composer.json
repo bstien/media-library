@@ -1,5 +1,5 @@
 {
-    "name": "stien/media-library",
+    "name": "bstien/media-library",
     "description": "Keep control and tidyness in your media-library with this package.",
     "authors": [
         {
@@ -7,10 +7,11 @@
             "email": "bastian.stien@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
-    "prefer-stable" : true,
     "require": {
-	"php": ">=5.4.0"
+	  "php": ">=5.4.0",
+      "illuminate/support": "~5.0",
+      "illuminate/database": "~5.0",
+      "moinax/tvdb": "dev-master"
     },
     "autoload": {
         "psr-4": {
