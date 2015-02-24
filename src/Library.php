@@ -50,6 +50,6 @@ class Library {
 	 */
 	public function tvdb()
 	{
-		return $this->tvdb_manager->getClient();
+		return $this->tvdb_manager;
 	}
 }
