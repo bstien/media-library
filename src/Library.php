@@ -2,7 +2,6 @@
 namespace Stien\MediaLibrary;
 
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
-use Illuminate\Support\Facades\App;
 use Stien\MediaLibrary\TvDb\TvDbManager;
 
 class Library {
@@ -48,7 +47,7 @@ class Library {
 	 */
 	public function getTvDbManager()
 	{
-		return $this->tvDbManager;
+		return $this->getContentManager()->getTvDbManager();
 	}
 
 	/**
@@ -56,6 +55,6 @@ class Library {
 	 */
 	public function setTvDbManager($tvDbManager)
 	{
-		$this->tvDbManager = $tvDbManager;
+		$this->getContentManager()->setTvDbManager($tvDbManager);
 	}
 }

@@ -3,13 +3,19 @@ namespace Stien\MediaLibrary;
 
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use League\Flysystem\Filesystem;
+use Stien\MediaLibrary\TvDb\TvDbManager;
 
 class ContentManager {
 
 	/**
 	 * @var ConfigRepository
 	 */
-	private $config;
+	protected $config;
+
+	/**
+	 * @var TvDbManager
+	 */
+	protected $tvDbManager;
 
 	/**
 	 * Represents the folder/structure where
@@ -24,4 +30,22 @@ class ContentManager {
 		$this->config = $config;
 		$this->filesystem = $filesystem;
 	}
+
+	/**
+	 * @return TvDbManager
+	 */
+	public function getTvDbManager()
+	{
+		return $this->tvDbManager;
+	}
+
+	/**
+	 * @param TvDbManager $tvDbManager
+	 */
+	public function setTvDbManager($tvDbManager)
+	{
+		$this->tvDbManager = $tvDbManager;
+	}
+
+
 }

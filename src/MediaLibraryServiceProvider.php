@@ -8,6 +8,7 @@ use League\Flysystem\Filesystem;
 use League\Flysystem\Plugin\ListFiles;
 use League\Flysystem\Plugin\ListPaths;
 use Stien\MediaLibrary\Filesystem\MediaFilesystem;
+use Stien\MediaLibrary\TvDb\TvDbManager;
 
 class MediaLibraryServiceProvider extends ServiceProvider {
 
@@ -91,7 +92,7 @@ class MediaLibraryServiceProvider extends ServiceProvider {
 			$baseUrl = $app['config']['medialibrary.tvdb_base_url'];
 
 			// Set cache-path.
-			$cachePath = ! isset($app['config']['medialibrary.tvdb_cache_path']) ? App::storagePath() . "/cache/tvdb/" : $app['config']['medialibrary.tvdb_cache_path'];
+			$cachePath = ! isset($app['config']['medialibrary.tvdb_cache_path']) ? \App::storagePath() . "/cache/tvdb/" : $app['config']['medialibrary.tvdb_cache_path'];
 
 			// Set cache-TTL.
 			$cacheTtl = ! isset($app['config']['medialibrary.tvdb_cache_ttl']) ? null : $this->config['medialibrary.tvdb_cache_ttl'];
