@@ -51,9 +51,4 @@ class TvDbManager extends Client {
 			}
 		}
 	}
-
-	public function setContentManager(ContentManager $contentManager)
-	{
-
-	}
 }
