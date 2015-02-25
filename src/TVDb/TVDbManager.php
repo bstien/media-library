@@ -6,13 +6,9 @@ use Moinax\TvDb\Http\Cache\FilesystemCache;
 use Moinax\TvDb\Http\CacheClient;
 use Stien\MediaLibrary\Content\Episode;
 use Stien\MediaLibrary\Content\Serie;
+use Stien\MediaLibrary\ContentManager;
 
 class TvDbManager extends Client {
-
-	/**
-	 * @var Client
-	 */
-	private $client;
 
 	/**
 	 * @param      $baseUrl
@@ -54,5 +50,10 @@ class TvDbManager extends Client {
 				Episode::createFromTvDbEpisode($e);
 			}
 		}
+	}
+
+	public function setContentManager(ContentManager $contentManager)
+	{
+
 	}
 }
