@@ -95,7 +95,7 @@ class MediaLibraryServiceProvider extends ServiceProvider {
 	{
 		$app->singleton('bstien.media.filesystem', function ($app)
 		{
-			$filesystem = new Filesystem(new LocalAdapter($app['config']['medialibrary.library_path']));
+			$filesystem = new Filesystem(new LocalAdapter($app['config']['medialibrary.library.path']));
 
 			// Register plugins
 			$filesystem->addPlugin(new ListFiles())->addPlugin(new ListPaths());
