@@ -65,7 +65,6 @@ class MediaLibraryServiceProvider extends ServiceProvider {
 	 */
 	public function registerLibrary(Application $app)
 	{
-		$this->registerTvDbManager($app);
 		$this->registerContentManager($app);
 		$this->registerFilesystem($app);
 
@@ -74,30 +73,8 @@ class MediaLibraryServiceProvider extends ServiceProvider {
 			$library = new Library($app['config']);
 
 			$library->setContentManager($app['bstien.media.contentmanager']);
-			$library->setTvDbManager($app['bstien.media.tvdbmanager']);
 
 			return $library;
-		});
-	}
-
-	public function registerTvDbManager(Application $app)
-	{
-
-		$app->singleton('bstien.media.tvdbmanager', function ($app)
-		{
-			// Set API-key
-			$apiKey = $app['config']['medialibrary.tvdb_api_key'];
-
-			// Set base URL for TvDb-Client
-			$baseUrl = $app['config']['medialibrary.tvdb_base_url'];
-
-			// Set cache-path.
-			$cachePath = ! isset($app['config']['medialibrary.tvdb_cache_path']) ? \App::storagePath() . "/cache/tvdb/" : $app['config']['medialibrary.tvdb_cache_path'];
-
-			// Set cache-TTL.
-			$cacheTtl = ! isset($app['config']['medialibrary.tvdb_cache_ttl']) ? null : $this->config['medialibrary.tvdb_cache_ttl'];
-
-			return new TvDbManager($baseUrl, $apiKey, $cachePath, $cacheTtl);
 		});
 	}
 

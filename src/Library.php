@@ -41,20 +41,4 @@ class Library {
 	{
 		$this->contentManager = $contentManager;
 	}
-
-	/**
-	 * @return TvDbManager
-	 */
-	public function getTvDbManager()
-	{
-		return $this->getContentManager()->getTvDbManager();
-	}
-
-	/**
-	 * @param TvDbManager $tvDbManager
-	 */
-	public function setTvDbManager($tvDbManager)
-	{
-		$this->getContentManager()->setTvDbManager($tvDbManager);
-	}
 }
