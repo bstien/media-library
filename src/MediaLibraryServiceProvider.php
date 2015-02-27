@@ -7,8 +7,6 @@ use League\Flysystem\Adapter\Local as LocalAdapter;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Plugin\ListFiles;
 use League\Flysystem\Plugin\ListPaths;
-use Stien\MediaLibrary\Filesystem\MediaFilesystem;
-use Stien\MediaLibrary\TvDb\TvDbManager;
 
 class MediaLibraryServiceProvider extends ServiceProvider {
 
